@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  db_mongo:
+    container_name: mongodbserver
+    image: mongo:latest
+    restart: always
+    networks:
+      - db_network
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_DATABASE: coba
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    volumes:
+      - ./mongodata:/data/db
+
+networks:
+  db_network:
+    driver: bridge
